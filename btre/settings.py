@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
-from decouple import config
-from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,17 +21,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = 'django-insecure-wo7le_t)7(=x!cb4jk8_9j5d1=x_*7iwzvghpa8l1l%z6vzveq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool)
+DEBUG = True
 
 ALLOWED_HOSTS = [
-    '192.46.210.182',
-    '127.0.0.1',
-    'realestate-test-navneet.xyz',
-    'www.realestate-test-navneet.xyz',
-    'localhost'
+    # '192.46.210.182',
+    # '127.0.0.1',
+    # 'realestate-test-navneet.xyz',
+    # 'www.realestate-test-navneet.xyz',
+    # 'localhost'
 ]
 
 
@@ -90,11 +88,11 @@ DATABASES = {
     'default': {
         #'ENGINE': 'django.db.backends.postgresql',
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_USER_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT':config('DB_PORT')
+        'NAME': 'btredb',
+        'USER': 'postgres',
+        'PASSWORD': 'Navneet@57',
+        'HOST': 'localhost',
+        'PORT': 5433
     }
 }
 
@@ -149,17 +147,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 
 # Messages
+from django.contrib.messages import constants as messages
 
 MESSAGE_TAGS = {
     messages.ERROR: "danger",
 }
 
 # Email config
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT = config('EMAIL_PORT',cast=int)
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'foodonline5707@gmail.com'
+EMAIL_HOST_PASSWORD = 'qogtwkteqmhzdfmm'
+EMAIL_USE_TLS = True
 
 try:
     from .local_settings import *
