@@ -28,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = [
-    '192.46.210.182',
+    '172.105.62.58',
     '127.0.0.1',
     'realestate-test-navneet.xyz',
     'www.realestate-test-navneet.xyz',
