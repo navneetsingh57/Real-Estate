@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,17 +22,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-wo7le_t)7(=x!cb4jk8_9j5d1=x_*7iwzvghpa8l1l%z6vzveq'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = [
-    # '192.46.210.182',
-    # '127.0.0.1',
-    # 'realestate-test-navneet.xyz',
-    # 'www.realestate-test-navneet.xyz',
-    # 'localhost'
+    '192.46.210.182',
+    '127.0.0.1',
+    'realestate-test-navneet.xyz',
+    'www.realestate-test-navneet.xyz',
+    'localhost'
 ]
 
 
@@ -88,11 +89,11 @@ DATABASES = {
     'default': {
         #'ENGINE': 'django.db.backends.postgresql',
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'btredb',
-        'USER': 'postgres',
-        'PASSWORD': 'Navneet@57',
-        'HOST': 'localhost',
-        'PORT': 5433
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_USER_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT')
     }
 }
 
@@ -153,8 +154,8 @@ MESSAGE_TAGS = {
     messages.ERROR: "danger",
 }
 
-
-try:
-    from .local_settings import *
-except ImportError:
-    pass
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT',cast=int)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
